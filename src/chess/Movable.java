@@ -1,11 +1,17 @@
+/*
+ * Calvin Lee & Bartosz Kidacki
+ * Software Methodology (CS213), Rutgers Univ.
+ * Chess 84
+ */
+
 package chess;
 
 import java.util.ArrayList;
-import chess.Chess.Pos;
+import chess.Chess.RankFile;
 
 public interface Movable {
-	//takes as input a position, and returns whether move was successful or not.
+	//abstract method for moving a piece.
 	boolean move(int rank, char file);
-	//gets a list of valid moves for this specific piece
-	ArrayList<Pos> getValidMoves();
+	//abstract method for getting a list of valid places to move a piece.
+	ArrayList<RankFile> getValidMoves();
 }

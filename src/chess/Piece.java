@@ -29,6 +29,7 @@ class Piece{
 	}
 }
 
+//subclass for Pawn.
 class Pawn extends Piece implements Movable{
 	public Pawn(char color, RankFile position){
 		super(color, position);

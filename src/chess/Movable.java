@@ -6,12 +6,9 @@
 
 package chess;
 
-import java.util.ArrayList;
 import chess.Chess.RankFile;
 
 public interface Movable {
 	//abstract method for moving a piece.
-	boolean move(int rank, char file);
-	//abstract method for getting a list of valid places to move a piece.
-	ArrayList<RankFile> getValidMoves();
+	boolean move(RankFile rf);
 }

@@ -54,6 +54,34 @@ class Board {
 		}
 	}
 	
+	//returns piece in this rank/file. returns null if empty.
+	public Piece getPiece(int rank, char file)	{
+		if ( (rank < 1 || rank > 8) || (file < 'a' || file > 'h') ) {
+			return null;
+		}
+		int i = 8 - rank;
+		int j = ((int)file - 'a');
+		
+		if (position[i][j] == null) {
+			return null;
+		} else {
+			return position[i][j];
+		}
+	}
+	
+	public boolean setPiece(Piece p, RankFile rf) {
+		int rank = rf.rank;
+		char file = rf.file;
+		if ( (rank < 1 || rank > 8) || (file < 'a' || file > 'h') ) {
+			return false;
+		}
+		int i = 8 - rank;
+		int j = ((int)file - 'a');
+		
+		position[i][j] = p;
+		return true;
+	}
+	
 	public String toString(){
 		StringBuilder s = new StringBuilder();	//the string we will return for the board.
 		int i;
@@ -66,7 +94,6 @@ class Board {
 					} else {
 						s.append("##");
 					}
-					//s.append(" ");
 					
 				} else {
 					//if this position is occupied

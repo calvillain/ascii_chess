@@ -9,7 +9,7 @@ package chess;
 import java.util.ArrayList;
 import chess.Chess.RankFile;
 
-abstract class Piece implements Movable{
+abstract class Piece{
 	RankFile position;	//position object. tuple of rank, file
 	char color;	//'w' = white, 'b' = black
 	char type;	//'p' = pawn, 'K' = King, etc.

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import chess.Chess.RankFile;
 
 //Piece subclass for Rook.
-class Rook extends Piece implements Movable{
+class Rook extends Piece{
 	public Rook(char color, RankFile position, Board board){
 		super(color, position, board);
 		this.type = 'R';

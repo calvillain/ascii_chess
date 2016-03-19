@@ -11,7 +11,7 @@ import chess.Chess.RankFile;
  *	char type;	//'p' = pawn, 'K' = King, etc.
  *	Board board;
  */
-class Queen extends Piece implements Movable{
+class Queen extends Piece{
 	public Queen(char color, RankFile position, Board board){
 		super(color, position, board);
 		this.type = 'Q';

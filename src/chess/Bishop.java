@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import chess.Chess.RankFile;
 
 //Piece subclass for Rook.
-class Rook extends Piece{
-	public Rook(char color, RankFile position, Board board){
+class Bishop extends Piece{
+	public Bishop(char color, RankFile position, Board board){
 		super(color, position, board);
-		this.type = 'R';
+		this.type = 'B';
 	}
 	
 	// returns true if this piece is successfully moved to this location. returns false otherwise
@@ -19,7 +19,7 @@ class Rook extends Piece{
 
 	// gets a list of valid moves for this specific type of piece
 	public ArrayList<RankFile> getValidMoves() {
-	// NEEDS IMPLEMENTATION!
+		// NEEDS IMPLEMENTATION!
 		return null;
 	}
 	

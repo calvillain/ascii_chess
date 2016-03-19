@@ -27,12 +27,14 @@ class Pawn extends Piece{
 			this.position = rf;				//change this piece's position field
 			board.setPiece(this, rf);		//update the board by adding to new position
 			board.removePiece(oldrf);		//and deleting from old position
+			
+			this.unmoved = false;
 			return true;
 		}
 		return false;
 	}
 	
-	// gets a list of valid moves for this specific type of piece
+	// gets a list of valid moves for this specific piece. 
 	public ArrayList<RankFile> getValidMoves() {
 		int r = this.position.rank;
 		char f = this.position.file;
@@ -45,22 +47,28 @@ class Pawn extends Piece{
 			forward = -1;	//black = "down is forward"
 		}
 		
-		ans.add(new RankFile(r + forward, f));	//adds forward position
-		
-		if (this.unmoved) {	//adds 2nd forward position, if unmoved
-			ans.add(new RankFile(r + (2*forward), f));
+		RankFile oneAhead = new RankFile(r + forward, f);
+		RankFile twoAhead = new RankFile(r + (2*forward), f);
+		if (board.getPiece(oneAhead) == null) {
+			if (board.getPiece(twoAhead) == null && this.unmoved ) {
+				ans.add(twoAhead);
+			}
+			
+			ans.add(oneAhead);
 		}
 		
-		Piece p = board.getPiece(r + forward, (char)(f+1));	//diagonal 1
+		RankFile rightDiag = new RankFile(r + forward, (char)(f+1));
+		Piece p = board.getPiece(rightDiag);	//diagonal 1
 		if (p != null) {
 			if (p.color != this.color) {
-				ans.add(new RankFile(r + forward, (char)(f+1)));
+				ans.add(rightDiag);
 			}
 		}
-		p = board.getPiece(r + forward, (char)(f-1));	//diagonal 2
+		RankFile leftDiag = new RankFile(r + forward, (char)(f-1));
+		p = board.getPiece(leftDiag);	//diagonal 2
 		if (p != null) {
 			if (p.color != this.color) {
-				ans.add(new RankFile(r + forward, (char)(f-1)));
+				ans.add(leftDiag);
 			}
 		}
 		

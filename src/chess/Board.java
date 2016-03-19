@@ -10,7 +10,7 @@ import chess.Chess.RankFile;
 
 /**********************************
 blank board:
-   0123456789012345678901234	index
+    0  1  2  3  4  5  6  7	index
   ---------------------------
 0|    ##    ##    ##    ## 8 |0
 1| ##    ##    ##    ##    7 |1
@@ -22,10 +22,10 @@ blank board:
 7| ##    ##    ##    ##    1 |7
 8|  a  b  c  d  e  f  g  h   |8
   ---------------------------
-   0123456789012345678901234	index
+    0  1  2  3  4  5  6  7	index
 
 default board: 
-   0123456789012345678901234	index
+   0  1  2  3  4  5  6  7	index
   ---------------------------
 0| bR bN bB bQ bK bB bN bR 8 |0
 1| bp bp bp bp bp bp bp bp 7 |1
@@ -37,7 +37,7 @@ default board:
 7| wR wN wB wQ wK wB wN wR 1 |7
 8|  a  b  c  d  e  f  g  h   |8
   ---------------------------
-   0123456789012345678901234	index
+   0  1  2  3  4  5  6  7	index
 ************************************/
 
 class Board {
@@ -55,7 +55,10 @@ class Board {
 	}
 	
 	//returns piece in this rank/file. returns null if empty.
-	public Piece getPiece(int rank, char file)	{
+	public Piece getPiece(RankFile rf)	{
+		int rank = rf.rank;
+		int file = rf.file;
+		
 		if ( (rank < 1 || rank > 8) || (file < 'a' || file > 'h') ) {
 			return null;
 		}

@@ -50,12 +50,28 @@ public class Chess {
 		
 		System.out.println(b);
 		
-		System.out.println("moving black pawn to 6a....");
-		RankFile sixA = new RankFile(6, 'a');
-		bp.move(sixA);
+		System.out.println("moving black pawn to 5a...\n");
+		RankFile fiveA = new RankFile(5, 'a');
+		bp.move(fiveA);
 				
 		System.out.println(b);
 		
+		System.out.println("moving white queen to 6d...\n");
+		RankFile fourD = new RankFile(4, 'd');
+		wq.move(fourD);
+		
+		System.out.println(b);
+		
+		System.out.println("moving black pawn to 4a...\n");
+		RankFile fourA = new RankFile(4, 'a');
+		bp.move(fourA);
+		
+		System.out.println(b);
+		
+		System.out.println("taking black pawn with white queen...\n");
+		wq.move(fourA);
+		
+		System.out.println(b);
 		/*****************************************************************************************/
 		
 		return;

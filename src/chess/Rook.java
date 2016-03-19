@@ -10,7 +10,7 @@ class Rook extends Piece{
 		super(color, position, board);
 		this.type = 'R';
 	}
-	
+
 	// returns true if this piece is successfully moved to this location. returns false otherwise
 	public boolean move(RankFile rf) {
 		// NEEDS IMPLEMENTATION!
@@ -22,7 +22,7 @@ class Rook extends Piece{
 	// NEEDS IMPLEMENTATION!
 		return null;
 	}
-	
+
 	public String toString(){
 		return "" + super.toString() + this.type;
 	}

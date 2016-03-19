@@ -9,7 +9,7 @@ public class Knight extends Piece {
 	public Knight(char color, RankFile position, Board board) {
 		super(color, position, board);
 		this.type = 'N';
-		
+
 	}
 
 	@Override
@@ -22,9 +22,6 @@ public class Knight extends Piece {
 	public boolean move(RankFile rf) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-	public String toString(){
-		return "" + super.toString() + this.type;
 	}
 
 }

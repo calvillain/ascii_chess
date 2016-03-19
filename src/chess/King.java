@@ -22,8 +22,6 @@ public class King extends Piece {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public String toString(){
-		return "" + super.toString() + this.type;
-	}
+	
 
 }

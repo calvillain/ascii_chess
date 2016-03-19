@@ -38,6 +38,15 @@ public class Chess {
 		System.out.println("printing blank board...");
 		System.out.println(b);
 		
+		b.position[7][0] = new Pawn('b', new RankFile(1, 'a'));
+		System.out.println(b);
+		
+		b.position[6][1] = new Queen('w', new RankFile(2, 'b'));
+		
+		
+		System.out.println(b);
+		
+		
 		return;
 	}
 }

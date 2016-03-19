@@ -56,25 +56,30 @@ class Board {
 	
 	public String toString(){
 		StringBuilder s = new StringBuilder();	//the string we will return for the board.
-		for (int i=0 ; i<8 ; i++){
-			for (int j=0 ; j<8; j++){
+		int i;
+		int j;
+		for (i=0 ; i<8 ; i++){
+			for (j=0 ; j<8; j++){
 				if (position[i][j] == null) {	//if this position is unoccupied
 					if ( (i + j)%2 == 0 ) {
 						s.append("  ");
 					} else {
 						s.append("##");
 					}
-					s.append(" ");
+					//s.append(" ");
 					
 				} else {
 					//if this position is occupied
-					s.append("nn");
+					s.append(position[i][j].toString());
 				}
+				s.append(" ");
 				
 			}
+			
+			s.append("" + (8 - i));
 			s.append("\n");
 		}
-		s.append("done");
+		s.append(" a  b  c  d  e  f  g  h\n");
 		
 		return s.toString();
 	}

@@ -4,8 +4,15 @@ import java.util.ArrayList;
 
 import chess.Chess.RankFile;
 
-//Piece subclass for Pawn.
-class Pawn extends Piece implements Movable{
+
+/*
+ *	Piece subclass for Pawn. inherited fields:
+ *	RankFile position;	//position object. tuple of rank, file
+ *	char color;	//'w' = white, 'b' = black
+ *	char type;	//'p' = pawn, 'K' = King, etc.
+ *	Board board;
+ */
+class Pawn extends Piece{
 	boolean unmoved;
 	
 	public Pawn(char color, RankFile position, Board board){
@@ -16,8 +23,10 @@ class Pawn extends Piece implements Movable{
 	// returns true if this piece is successfully moved to this location. returns false otherwise
 	public boolean move(RankFile rf) {
 		if (this.getValidMoves().contains(rf)) {	//if this is one of the valid moves
-			this.position = rf;	//move the piece	//change this piece's position field
-			board.setPiece(this, rf);		//update the board
+			RankFile oldrf = this.position;
+			this.position = rf;				//change this piece's position field
+			board.setPiece(this, rf);		//update the board by adding to new position
+			board.removePiece(oldrf);		//and deleting from old position
 			return true;
 		}
 		return false;
@@ -54,7 +63,7 @@ class Pawn extends Piece implements Movable{
 				ans.add(new RankFile(r + forward, (char)(f-1)));
 			}
 		}
-	
+		
 		return ans;
 	}
 	

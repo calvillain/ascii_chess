@@ -10,14 +10,15 @@ class Rook extends Piece implements Movable{
 		super(color, position, board);
 		this.type = 'R';
 	}
+	
+	// returns true if this piece is successfully moved to this location. returns false otherwise
 	public boolean move(RankFile rf) {
-		// returns true if this piece is successfully moved to this location. returns false otherwise
 		// NEEDS IMPLEMENTATION!
 		return false;
 	}
 
+	// gets a list of valid moves for this specific type of piece
 	public ArrayList<RankFile> getValidMoves() {
-		// gets a list of valid moves for this specific type of piece
 		// NEEDS IMPLEMENTATION!
 		return null;
 	}

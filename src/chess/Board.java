@@ -79,6 +79,19 @@ class Board {
 		int j = ((int)file - 'a');
 		
 		position[i][j] = p;
+		
+		return true;
+	}
+	
+	public boolean removePiece(RankFile rf) {
+		int rank = rf.rank;
+		char file = rf.file;
+		if ( (rank < 1 || rank > 8) || (file < 'a' || file > 'h') ) {
+			return false;
+		}
+		int i = 8 - rf.rank;
+		int j = ((int)rf.file - 'a');
+		position[i][j] = null; 
 		return true;
 	}
 	

@@ -4,7 +4,13 @@ import java.util.ArrayList;
 
 import chess.Chess.RankFile;
 
-//Piece subclass for Queen
+/*
+ *	Piece subclass for Queen. inherited fields:
+ *	RankFile position;	//position object. tuple of rank, file
+ *	char color;	//'w' = white, 'b' = black
+ *	char type;	//'p' = pawn, 'K' = King, etc.
+ *	Board board;
+ */
 class Queen extends Piece implements Movable{
 	public Queen(char color, RankFile position, Board board){
 		super(color, position, board);

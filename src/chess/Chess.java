@@ -17,7 +17,7 @@ public class Chess {
 		}
 		
 		public boolean equals(Object o){
-			if (!o.getClass().equals(this)){
+			if (!(o.getClass().equals(this.getClass()))){
 				return false;
 			}
 			RankFile rf = (RankFile) o;
@@ -36,19 +36,26 @@ public class Chess {
 		System.out.println("printing blank board...\n");
 		System.out.println(b);
 
-		System.out.println("making a black pawn at 1a...\n");
-		RankFile oneA = new RankFile(1, 'a');
-		Piece bp = new Pawn('b', oneA, b);
-		b.setPiece(bp, oneA);
+		System.out.println("making a black pawn at 7a...\n");
+		RankFile sevenA = new RankFile(7, 'a');	//creating '1a' rankfile object
+		Piece bp = new Pawn('b', sevenA, b);		//creating new piece, that is a black pawn
+		b.setPiece(bp, sevenA);					//placing it on the board
 		
 		System.out.println(b);
 		
-		System.out.println("making a white Queen at 2b...\n");
-		RankFile twoB = new RankFile(2, 'b');
-		Piece wq = new Queen('w', twoB, b);
-		b.setPiece(wq, twoB);
+		System.out.println("making a white Queen at 1d...\n");
+		RankFile oneD = new RankFile(1, 'd');	//creating '2b' rankfile object
+		Piece wq = new Queen('w', oneD, b);		//creating new piece, that is a white queen
+		b.setPiece(wq, oneD);					//placing it on the board
 		
 		System.out.println(b);
+		
+		System.out.println("moving black pawn to 6a....");
+		RankFile sixA = new RankFile(6, 'a');
+		bp.move(sixA);
+				
+		System.out.println(b);
+		
 		/*****************************************************************************************/
 		
 		return;

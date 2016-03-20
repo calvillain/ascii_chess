@@ -24,4 +24,10 @@ public class Knight extends Piece {
 		return false;
 	}
 
+	@Override
+	boolean move(int rank, char file) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

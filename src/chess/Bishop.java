@@ -27,6 +27,12 @@ class Bishop extends Piece {
 		return false;
 
 	}
+	
+	@Override
+	boolean move(int rank, char file) {
+		RankFile rf = new RankFile(rank, file);
+		return this.move(rf);
+	}
 
 	// gets a list of valid moves for this specific type of piece
 	public ArrayList<RankFile> getValidMoves() {

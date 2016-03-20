@@ -17,6 +17,11 @@ class Rook extends Piece {
 		// NEEDS IMPLEMENTATION!
 		return false;
 	}
+	@Override
+	boolean move(int rank, char file) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	// gets a list of valid moves for this specific type of piece
 	public ArrayList<RankFile> getValidMoves() {
@@ -75,5 +80,4 @@ class Rook extends Piece {
 
 		return ans;
 	}
-
 }

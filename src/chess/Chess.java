@@ -30,49 +30,32 @@ public class Chess {
 	}
 	public static void main(String[] args){
 		System.out.println("lets chess!");
-		//test code 
-		/*****************************************************************************************/
+		
 		Board b = new Board();	//board comes before any pieces
 		System.out.println("printing blank board...\n");
 		System.out.println(b);
-//
-//		System.out.println("making a black pawn at 7a...\n");
-//		RankFile sevenA = new RankFile(7, 'a');	//creating '1a' rankfile object
-//		Piece bp = new Pawn('b', sevenA, b);		//creating new piece, that is a black pawn
-//		b.setPiece(bp, sevenA);					//placing it on the board
-//		
-//		System.out.println(b);
-//		
-//		System.out.println("making a white Queen at 1d...\n");
-//		RankFile oneD = new RankFile(1, 'd');	//creating '2b' rankfile object
-//		Piece wq = new Queen('w', oneD, b);		//creating new piece, that is a white queen
-//		b.setPiece(wq, oneD);					//placing it on the board
-//		
-//		System.out.println(b);
-//		
-//		System.out.println("moving black pawn to 5a...\n");
-//		RankFile fiveA = new RankFile(5, 'a');
-//		bp.move(fiveA);
-//				
-//		System.out.println(b);
-//		
-//		System.out.println("moving white queen to 6d...\n");
-//		RankFile fourD = new RankFile(4, 'd');
-//		wq.move(fourD);
-//		
-//		System.out.println(b);
-//		
-//		System.out.println("moving black pawn to 4a...\n");
-//		RankFile fourA = new RankFile(4, 'a');
-//		bp.move(fourA);
-//		
-//		System.out.println(b);
-//		
-//		System.out.println("taking black pawn with white queen...\n");
-//		wq.move(fourA);
-//		
-//		System.out.println(b);
-		/*****************************************************************************************/
+
+		
+		//*********test code************************************************************* 
+		
+		b.getPiece(2, 'd').move(3, 'd');
+		System.out.println(b);
+		
+		b.getPiece(7,'b').move(6,'b');
+		System.out.println(b);
+		
+		b.getPiece(2,'g').move(3,'g');
+		System.out.println(b);
+
+		b.getPiece(8,'c').move(7,'b');
+		System.out.println(b);
+		
+		b.getPiece(2,'a').move(4,'a');
+		System.out.println(b);
+		
+		b.getPiece(7,'b').move(1,'h');
+		System.out.println(b);
+		//*******************************************************************************
 		
 		return;
 	}

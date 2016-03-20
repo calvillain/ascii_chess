@@ -25,7 +25,9 @@ abstract class Piece {
 	// abstract method for getting a list of valid places to move a piece.
 	abstract ArrayList<RankFile> getValidMoves();
 
-	public abstract boolean move(RankFile rf);
+	abstract boolean move(RankFile rf);
+	
+	abstract boolean move(int rank, char file);
 
 	public RankFile getPos() {
 		return this.position;

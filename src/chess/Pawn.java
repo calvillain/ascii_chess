@@ -36,6 +36,12 @@ class Pawn extends Piece {
 		}
 		return false;
 	}
+	
+	// same thing, different signature
+	public boolean move(int rank, char file) {
+		RankFile rf = new RankFile(rank, file);
+		return this.move(rf);
+	}
 
 	// gets a list of valid moves for this specific piece.
 	public ArrayList<RankFile> getValidMoves() {

@@ -83,11 +83,9 @@ class Board {
 
 	}
 
-	//returns piece in this rank/file. returns null if empty.
-	public Piece getPiece(RankFile rf)	{
-		int rank = rf.rank;
-		int file = rf.file;
 
+	//returns piece in this rank/file. returns null if empty.
+	public Piece getPiece(int rank, char file) {
 		if ( (rank < 1 || rank > 8) || (file < 'a' || file > 'h') ) {
 			return null;
 		}
@@ -100,6 +98,27 @@ class Board {
 			return position[i][j];
 		}
 	}
+	
+	//same thing, different signature.
+	public Piece getPiece(RankFile rf)	{
+		int rank = rf.rank;
+		char file = rf.file;
+		return getPiece(rank, file);
+		/*
+		if ( (rank < 1 || rank > 8) || (file < 'a' || file > 'h') ) {
+			return null;
+		}
+		int i = 8 - rank;
+		int j = ((int)file - 'a');
+
+		if (position[i][j] == null) {
+			return null;
+		} else {
+			return position[i][j];
+		}
+		*/
+	}
+	
 
 	public boolean setPiece(Piece p, RankFile rf) {
 		int rank = rf.rank;

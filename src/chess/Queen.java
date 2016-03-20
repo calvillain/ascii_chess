@@ -32,6 +32,13 @@ class Queen extends Piece {
 		}
 		return false;
 	}
+	
+	//same method, different signature
+	@Override
+	boolean move(int rank, char file) {
+		RankFile rf = new RankFile(rank, file);
+		return this.move(rf);
+	}
 
 	// gets a list of valid moves for this specific type of piece, regardless of
 	// obstruction
@@ -157,5 +164,4 @@ class Queen extends Piece {
 
 		return ans;
 	}
-
 }

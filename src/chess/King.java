@@ -22,6 +22,12 @@ public class King extends Piece {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	boolean move(int rank, char file) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }

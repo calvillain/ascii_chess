@@ -12,6 +12,8 @@ public class Chess {
 		int rank;
 		char file;
 		public RankFile(int rank, char file){
+			//To Do: make conditionals for checking valid rank and file values,
+			//throw a 'invalid rank' exception if input has bad values for rank/file
 			this.rank = rank;
 			this.file = file;
 		}
@@ -37,24 +39,27 @@ public class Chess {
 
 		
 		//*********test code************************************************************* 
-		
+		//2d 3d
 		b.getPiece(2, 'd').move(3, 'd');
 		System.out.println(b);
-		
+		//7b 6b
 		b.getPiece(7,'b').move(6,'b');
 		System.out.println(b);
-		
+		//2g 3g
 		b.getPiece(2,'g').move(3,'g');
 		System.out.println(b);
-
+		//8c 7b
 		b.getPiece(8,'c').move(7,'b');
 		System.out.println(b);
-		
+		//2a 4a
 		b.getPiece(2,'a').move(4,'a');
 		System.out.println(b);
-		
+		//7b 1h
 		b.getPiece(7,'b').move(1,'h');
 		System.out.println(b);
+		
+		
+		
 		//*******************************************************************************
 		
 		return;

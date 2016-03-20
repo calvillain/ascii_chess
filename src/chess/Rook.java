@@ -11,18 +11,6 @@ class Rook extends Piece {
 		this.type = 'R';
 	}
 
-	// returns true if this piece is successfully moved to this location.
-	// returns false otherwise
-	public boolean move(RankFile rf) {
-		// NEEDS IMPLEMENTATION!
-		return false;
-	}
-	@Override
-	boolean move(int rank, char file) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	// gets a list of valid moves for this specific type of piece
 	public ArrayList<RankFile> getValidMoves() {
 		int r = this.position.rank;

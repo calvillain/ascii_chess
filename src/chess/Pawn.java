@@ -19,23 +19,6 @@ class Pawn extends Piece {
 		this.type = 'p';
 		this.unmoved = true;
 	}
-
-	// returns true if this piece is successfully moved to this location.
-	// returns false otherwise
-	public boolean move(RankFile rf) {
-		if (this.getValidMoves().contains(rf)) { // if this is one of the valid
-													// moves
-			RankFile oldrf = this.position;
-			this.position = rf; // change this piece's position field
-			board.setPiece(this, rf); // update the board by adding to new
-										// position
-			board.removePiece(oldrf); // and deleting from old position
-
-			this.unmoved = false;
-			return true;
-		}
-		return false;
-	}
 	
 	// same thing, different signature
 	public boolean move(int rank, char file) {

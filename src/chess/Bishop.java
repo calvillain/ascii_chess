@@ -11,29 +11,6 @@ class Bishop extends Piece {
 		this.type = 'B';
 	}
 
-	// returns true if this piece is successfully moved to this location.
-	// returns false otherwise
-	public boolean move(RankFile rf) {
-		if (this.getValidMoves().contains(rf)) { // if this is one of the valid
-			// moves
-			RankFile oldrf = this.position;
-			this.position = rf; // change this piece's position field
-			board.setPiece(this, rf); // update the board by adding to new
-			// position
-			board.removePiece(oldrf); // and deleting from old position
-
-			return true;
-		}
-		return false;
-
-	}
-	
-	@Override
-	boolean move(int rank, char file) {
-		RankFile rf = new RankFile(rank, file);
-		return this.move(rf);
-	}
-
 	// gets a list of valid moves for this specific type of piece
 	public ArrayList<RankFile> getValidMoves() {
 		int r = this.position.rank;

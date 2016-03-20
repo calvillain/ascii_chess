@@ -25,10 +25,29 @@ abstract class Piece {
 	// abstract method for getting a list of valid places to move a piece.
 	abstract ArrayList<RankFile> getValidMoves();
 
-	abstract boolean move(RankFile rf);
-	
-	abstract boolean move(int rank, char file);
+	// returns true if this piece is successfully moved to this location.
+	// returns false otherwise
+	boolean move(RankFile rf) {
+		if (this.getValidMoves().contains(rf)) { // if this is one of the valid
+			// moves
+			RankFile oldrf = this.position;
+			this.position = rf; // change this piece's position field
+			board.setPiece(this, rf); // update the board by adding to new
+			// position
+			board.removePiece(oldrf); // and deleting from old position
 
+			return true;
+		}
+		return false;
+	}
+	
+	//same method, different signaure
+	boolean move(int rank, char file) {
+		RankFile rf = new RankFile(rank, file);
+		return this.move(rf);
+	}
+
+	//returns this piece's position (RankFile object)
 	public RankFile getPos() {
 		return this.position;
 	}

@@ -205,7 +205,7 @@ public class Chess {
 						
 						//check for valid promotion char
 						char p = moveInput.charAt(6);
-						System.out.println("promoting to: " + p);
+						//System.out.println("promoting to: " + p);
 						
 						if (p == 'R' || p == 'N' || p == 'B' || p == 'Q'){
 						//input is correct. now determine if it's a valid move.
@@ -216,7 +216,7 @@ public class Chess {
 								//check color
 								if (turn == 'w'											//if this is white player
 								&& game.board.getPiece(rankFilePair.get(0)).type == 'p'	//moving a pawn
-								&& rankFilePair.get(1).rank == '8'){					//to the end of the board
+								&& rankFilePair.get(1).rank == 8){					//to the end of the board
 									
 									
 									move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
@@ -229,7 +229,7 @@ public class Chess {
 									}
 								}else if (turn == 'b'											//if this is white player
 								&& game.board.getPiece(rankFilePair.get(0)).type == 'p'	//moving a pawn
-								&& rankFilePair.get(1).rank == '1'){					//to the end of the board
+								&& rankFilePair.get(1).rank == 1){					//to the end of the board
 									//implement black promotion
 									move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
 									if (move) {
@@ -239,7 +239,7 @@ public class Chess {
 										System.out.println("Invalid move!");
 									}
 	
-								//if i'ts not a valid promotion move
+								//if it's not a valid promotion move
 								} else {
 									System.out.println("Invalid input!");
 								}
@@ -258,6 +258,7 @@ public class Chess {
 				}else{
 					System.out.println("Incorrect input! try again..");
 				}
+
 			}
 			
 		} catch (Exception e) {

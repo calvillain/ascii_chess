@@ -6,10 +6,17 @@
 
 package chess;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class Chess {
-	public Board board;
-	
-	//static member for position of pieces.
+	public Board board;	//the board object we'replaying on
+	Player white;	//the white player object in this chess game
+	Player black;	//the black player object in this chess game
+	int moveCount;
+	boolean gameOver;
+
+	//static object for position of pieces.
 	public static class RankFile{	
 		int rank;
 		char file;
@@ -39,20 +46,75 @@ public class Chess {
 		this.board = board;
 		
 		//make two players
-		Player white = new Player('w', board);
-		Player black = new Player('b', board);
+		white = new Player('w', board);
+		black = new Player('b', board);
+		
+		//initialize move counter
+		this.moveCount = 0;
+		
+		//initialize game over boolean
+		this.gameOver = false;
 	}
 	
 	
 	public static void main(String[] args){
+		
+		
 		System.out.println("lets chess!");
+		System.out.println("*************************************************");
+		System.out.println("instructions:");
+		System.out.println("-------------------------------------------------");
+		System.out.println("input format: rf rf (r = rank, f = file)");
+		System.out.println("ex: Please Enter Move: 1a 2b\n");
+		System.out.println("-------------------------------------------------");
+		System.out.println("type 'draw' after input to offer a draw game");
+		System.out.println("ex: Please Enter Move: 1a 2b draw");
+		System.out.println("type 'draw' to accept offer");
+		System.out.println("-------------------------------------------------");
+		System.out.println("type 'quit' to exit game");
+		System.out.println("*************************************************");
+		
 		//create a new game
 		Chess game = new Chess();
 		
+		try{
+			//input stream reader wrapped in buffered reader
+			InputStreamReader isr = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(isr);
+			
+			//while game is not over
+			while(game.gameOver == false){
+				game.moveCount++;
+				//if this is an odd numbered move (white's turn)
+				if ( game.moveCount % 2 == 1 ) {
+					System.out.println(game.white.toString() + "'s turn!");
+					System.out.print("Please enter move: ");
+					
+					//read in input for this player's move 
+					String moveInput = br.readLine();
+					
+					//check if gameover
+					if (moveInput.equals("quit")){
+						game.gameOver = true;
+					}else{
+					
+					//parse input for correctness
+					}
+				}
+				
+			
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		
 		
-		//*********test code*************************************************************
+		
+		
+		/*********test code*************************************************************
 		Board b = game.board;
 		boolean move;
 		
@@ -126,7 +188,7 @@ public class Chess {
 		
 		
 		
-		//*******************************************************************************
+		//*******************************************************************************/
 		
 		return;
 	}

@@ -11,6 +11,8 @@ public class Player {
 	Board board;
 	boolean check;
 	boolean checkmate;
+	
+	//constructor for player object
 	public Player(char color, Board board){
 		this.color = color;
 		this.board = board;
@@ -18,5 +20,13 @@ public class Player {
 		this.checkmate = false;
 	}
 	
-	
+	public String toString(){
+		String color = "";
+		if ( this.color == 'w') {
+			color = "white";
+		} else if (this.color == 'b') {
+			color = "black";
+		}
+		return color + " player";
+	}
 }

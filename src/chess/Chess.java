@@ -8,6 +8,7 @@ package chess;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Chess {
 	public Board board;	//the board object we'replaying on
@@ -50,60 +51,84 @@ public class Chess {
 		black = new Player('b', board);
 		
 		//initialize move counter
-		this.moveCount = 0;
+		this.moveCount = 1;
 		
 		//initialize game over boolean
 		this.gameOver = false;
 	}
 	
+	//static helper method for parsing input string of "rf rf" into a pair of RankFile objects
+	//first rankfile object is the location of the piece to be moved,
+	//second rankfile object is the location to move that piece
+	//returns null if incorrect input
+	public static ArrayList<RankFile> parseInput(String input){
+		return null;
+	}
 	
-	public static void main(String[] args){
-		
-		
+	
+	public static void main(String[] args){	
 		System.out.println("lets chess!");
 		System.out.println("*************************************************");
 		System.out.println("instructions:");
 		System.out.println("-------------------------------------------------");
 		System.out.println("input format: rf rf (r = rank, f = file)");
-		System.out.println("ex: Please Enter Move: 1a 2b\n");
+		System.out.println("ex: Please Enter Move: 1a 2b");
 		System.out.println("-------------------------------------------------");
 		System.out.println("type 'draw' after input to offer a draw game");
 		System.out.println("ex: Please Enter Move: 1a 2b draw");
 		System.out.println("type 'draw' to accept offer");
 		System.out.println("-------------------------------------------------");
 		System.out.println("type 'quit' to exit game");
-		System.out.println("*************************************************");
+		System.out.println("*************************************************\n");
+		
 		
 		//create a new game
 		Chess game = new Chess();
+		System.out.println(game.board);
 		
 		try{
 			//input stream reader wrapped in buffered reader
 			InputStreamReader isr = new InputStreamReader(System.in);
 			BufferedReader br = new BufferedReader(isr);
 			
+			//the output of the parsed move input string
+			ArrayList<RankFile> rankFilePair = new ArrayList<RankFile>();
+			
 			//while game is not over
 			while(game.gameOver == false){
-				game.moveCount++;
-				//if this is an odd numbered move (white's turn)
+				//if this is an odd-numbered move (white's turn)
 				if ( game.moveCount % 2 == 1 ) {
 					System.out.println(game.white.toString() + "'s turn!");
 					System.out.print("Please enter move: ");
-					
-					//read in input for this player's move 
-					String moveInput = br.readLine();
-					
-					//check if gameover
-					if (moveInput.equals("quit")){
-						game.gameOver = true;
-					}else{
-					
-					//parse input for correctness
-					}
+				//if this is an even-numbered move (black's turn)
+				} else {
+					System.out.println(game.white.toString() + "'s turn!");
+					System.out.print("Please enter move: ");
 				}
+				//read in input for this player's move 
+				String moveInput = br.readLine();
 				
-			
+				//check if gameover
+				if (moveInput.equals("quit")){
+					game.gameOver = true;
+					System.out.println("game over!");
+				//is the proper input length, with no draw offer
+				}else if (moveInput.length() == 5){
+				//parse input for correctness
+					rankFilePair = parseInput( moveInput );
+					if (rankFilePair == null) {
+						System.out.println("Incorrect input! try again..");
+					}else{
+						
+					}
+					
+				//proper input string length for draw offer	
+				}else if (moveInput.length() == 10 ){
 				
+				//incorrect input string length
+				}else{
+					System.out.println("Incorrect input! try again..");
+				}
 			}
 			
 		} catch (Exception e) {

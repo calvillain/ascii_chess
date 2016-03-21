@@ -62,6 +62,38 @@ public class Chess {
 	//second rankfile object is the location to move that piece
 	//returns null if incorrect input
 	public static ArrayList<RankFile> parseInput(String input){
+		ArrayList<RankFile> ans = new ArrayList<RankFile>();
+		int r1;
+		char f1;
+		int r2;
+		char f2;
+		
+		
+		if (Character.isDigit(input.charAt(0))){
+			r1 = ((int)input.charAt(0) - 48);
+			
+			if (Character.isLetter(input.charAt(1))){
+				f1 = (Character.toLowerCase(input.charAt(1)));
+				
+				if (Character.isSpaceChar(input.charAt(2))){
+					
+					if (Character.isDigit(input.charAt(3))){
+						r2 = ((int)input.charAt(3) - 48);
+						
+						if (Character.isLetter(input.charAt(4))){
+							f2 = (Character.toLowerCase(input.charAt(4)));
+							
+							ans.add(new RankFile(r1, f1));
+							ans.add(new RankFile(r2, f2));
+							
+							System.out.println(ans); 
+							return ans;
+						}
+					}
+				}
+			}
+		}
+
 		return null;
 	}
 	
@@ -93,6 +125,8 @@ public class Chess {
 			
 			//the output of the parsed move input string
 			ArrayList<RankFile> rankFilePair = new ArrayList<RankFile>();
+			//boolean for checking valid move
+			boolean move;
 			
 			//while game is not over
 			while(game.gameOver == false){
@@ -102,7 +136,7 @@ public class Chess {
 					System.out.print("Please enter move: ");
 				//if this is an even-numbered move (black's turn)
 				} else {
-					System.out.println(game.white.toString() + "'s turn!");
+					System.out.println(game.black.toString() + "'s turn!");
 					System.out.print("Please enter move: ");
 				}
 				//read in input for this player's move 
@@ -119,11 +153,18 @@ public class Chess {
 					if (rankFilePair == null) {
 						System.out.println("Incorrect input! try again..");
 					}else{
-						
+						move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
+						if (move) {
+							System.out.println(game.board);
+							game.moveCount++;
+						} else {
+							System.out.println("invalid move!");
+						}
 					}
 					
 				//proper input string length for draw offer	
 				}else if (moveInput.length() == 10 ){
+					//implement some way to offer draw, then accept it
 				
 				//incorrect input string length
 				}else{
@@ -166,7 +207,7 @@ public class Chess {
 		if (move) {System.out.println(b);}
 		else {System.out.println("invalid move!");}
 		
-		//2a 4a (white)
+		//2e 4e (white)
 		move = b.getPiece(2,'e').movePiece(4,'e');
 		if (move) {System.out.println(b);}
 		else {System.out.println("invalid move!");}

@@ -68,25 +68,26 @@ public class Chess {
 	public static ArrayList<RankFile> parseInput(String input){
 		System.out.println(input);
 		ArrayList<RankFile> ans = new ArrayList<RankFile>();
+		
 		int r1;
 		char f1;
+		
 		int r2;
 		char f2;
 		
-		
-		if (Character.isDigit(input.charAt(0))){
-			r1 = ((int)input.charAt(0) - 48);
+		if (Character.isLetter(input.charAt(0))){
+			f1 = (Character.toLowerCase(input.charAt(0)));
 			
-			if (Character.isLetter(input.charAt(1))){
-				f1 = (Character.toLowerCase(input.charAt(1)));
+			if (Character.isDigit(input.charAt(1))){
+				r1 = ((int)input.charAt(1) - 48);
 				
 				if (Character.isSpaceChar(input.charAt(2))){
 					
-					if (Character.isDigit(input.charAt(3))){
-						r2 = ((int)input.charAt(3) - 48);
+					if (Character.isLetter(input.charAt(3))){
+						f2 = (Character.toLowerCase(input.charAt(3)));
 						
-						if (Character.isLetter(input.charAt(4))){
-							f2 = (Character.toLowerCase(input.charAt(4)));
+						if (Character.isDigit(input.charAt(4))){
+							r2 = ((int)input.charAt(4) - 48);
 							
 							if (r1 >= 1 && r1 <= 8 && f1 >= 'a' && f1 <= 'h'){
 								ans.add(new RankFile(r1, f1));
@@ -111,11 +112,11 @@ public class Chess {
 		System.out.println("*************************************************");
 		System.out.println("instructions:");
 		System.out.println("-------------------------------------------------");
-		System.out.println("input format: 'rf rf' (r = rank, f = file)");
-		System.out.println("ex: Please Enter Move: 1a 2b");
+		System.out.println("input format: 'fr fr' (f = file, r = rank)");
+		System.out.println("ex: Please Enter Move: a1 b2");
 		System.out.println("-------------------------------------------------");
 		System.out.println("type 'draw' after input to offer a draw game");
-		System.out.println("ex: Please Enter Move: 1a 2b draw");
+		System.out.println("ex: Please Enter Move: a1 b2 draw");
 		System.out.println("type 'draw' in response to accept offer");
 		System.out.println("-------------------------------------------------");
 		System.out.println("type 'help' to display this message");
@@ -264,86 +265,6 @@ public class Chess {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		/*********test code*************************************************************
-		Board b = game.board;
-		boolean move;
-		
-		System.out.println("printing blank board...\n");
-		System.out.println(b); 
-
-		//2d 3d (white)
-		move = b.getPiece(2, 'd').movePiece(3, 'd');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//7b 6b (black)
-		move = b.getPiece(7,'b').movePiece(6,'b');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//2g 3g (white)
-		move = b.getPiece(2,'g').movePiece(3,'g');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//8c 7b (black)
-		move = b.getPiece(8,'c').movePiece(7,'b');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//2e 4e (white)
-		move = b.getPiece(2,'e').movePiece(4,'e');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-
-		//7b 5d (black)
-		move = b.getPiece(7,'b').movePiece(6, 'c');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//1d 4g (white)
-		move = b.getPiece(1,'d').movePiece(4, 'g');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//8g 6h (black)
-		move = b.getPiece(8,'g').movePiece(6, 'h');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//4g 4f (white)
-		move = b.getPiece(4,'g').movePiece(4, 'f');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//8b 6a (black)
-		move = b.getPiece(8,'b').movePiece(6, 'a');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//3d 4d (white)
-		move = b.getPiece(3,'d').movePiece(4, 'd');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//6a 4b (black)
-		move = b.getPiece(6,'a').movePiece(4, 'b');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		//1f 4c (white)
-		move = b.getPiece(1,'f').movePiece(4, 'c');
-		if (move) {System.out.println(b);}
-		else {System.out.println("invalid move!");}
-		
-		
-		
-		//*******************************************************************************/
 		
 		return;
 	}

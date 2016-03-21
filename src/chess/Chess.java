@@ -39,26 +39,56 @@ public class Chess {
 
 		
 		//*********test code************************************************************* 
-		//2d 3d
-		b.getPiece(2, 'd').move(3, 'd');
-		System.out.println(b);
-		//7b 6b
-		b.getPiece(7,'b').move(6,'b');
-		System.out.println(b);
-		//2g 3g
-		b.getPiece(2,'g').move(3,'g');
-		System.out.println(b);
-		//8c 7b
-		b.getPiece(8,'c').move(7,'b');
-		System.out.println(b);
-		//2a 4a
-		b.getPiece(2,'a').move(4,'a');
-		System.out.println(b);
-		//7b 1h
-		b.getPiece(7,'b').move(1,'h');
-		System.out.println(b);
+		boolean move;
+		//2d 3d (white)
+		move = b.getPiece(2, 'd').move(3, 'd');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
 		
+		//7b 6b (black)
+		move = b.getPiece(7,'b').move(6,'b');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
 		
+		//2g 3g (white)
+		move = b.getPiece(2,'g').move(3,'g');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
+		
+		//8c 7b (black)
+		move = b.getPiece(8,'c').move(7,'b');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
+		
+		//2a 4a (white)
+		move = b.getPiece(2,'e').move(4,'e');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
+
+		//7b 5d (black)
+		move = b.getPiece(7,'b').move(6, 'c');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
+		
+		//1d 4g (white)
+		move = b.getPiece(1,'d').move(4, 'g');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
+		
+		//8g 6h (black)
+		move = b.getPiece(8,'g').move(6, 'h');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
+		
+		//4g 4f (white)
+		move = b.getPiece(4,'g').move(4, 'f');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
+		
+		//6h 4g (black)
+		move = b.getPiece(6,'h').move(4, 'g');
+		if (move) {System.out.println(b);}
+		else {System.out.println("invalid move!");}
 		
 		//*******************************************************************************
 		

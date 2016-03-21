@@ -84,7 +84,6 @@ class Bishop extends Piece {
 			i--;
 			j++;
 		}
-
 		return ans;
 
 	}

@@ -28,6 +28,10 @@ abstract class Piece {
 	// returns true if this piece is successfully moved to this location.
 	// returns false otherwise
 	boolean move(RankFile rf) {
+		//error conditions for invalid rank file parameters
+		if (rf.rank < 1 || rf.rank > 8 || rf.file < 'a' || rf.file > 'h'){
+			return false;
+		}
 		if (this.getValidMoves().contains(rf)) { // if this is one of the valid
 			// moves
 			RankFile oldrf = this.position;

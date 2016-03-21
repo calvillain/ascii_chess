@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import chess.Chess.RankFile;
 
 public class King extends Piece {
-
+boolean unmoved;
 	public King(char color, RankFile position, Board board) {
 		super(color, position, board);
 		this.type = 'K';
+		this.unmoved = true;
 	}
 
 	@Override
@@ -16,8 +17,9 @@ public class King extends Piece {
 		int r = this.position.rank;
 		char f = this.position.file;
 		
+
 		ArrayList<RankFile> ans = new ArrayList<RankFile>();
-		
+
 		//top row
 		if (r != 8){
 			//top-left

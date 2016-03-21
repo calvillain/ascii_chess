@@ -47,6 +47,8 @@ class Board {
 	//default constructor for blank board
 	public Board() {
 		position = new Piece[8][8];
+		
+		/* moved initialization of pieces to player objects
 		//black pieces
 		position[0][0] = new Rook('b', new RankFile(8, 'a'), this);
 		position[0][1] = new Knight('b', new RankFile(8,'b'),this);
@@ -81,6 +83,8 @@ class Board {
 		position[7][5] = new Bishop('w', new RankFile(1,'f'), this);
 		position[7][6] = new Knight('w', new RankFile(1,'g'),this);
 		position[7][7] = new Rook('w', new RankFile(1,'h'), this);
+		
+		*/
 	}
 
 

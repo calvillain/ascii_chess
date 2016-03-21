@@ -50,6 +50,10 @@ public class Chess {
 		white = new Player('w', board);
 		black = new Player('b', board);
 		
+		//set opponents
+		white.opponent = black;
+		black.opponent = white;
+		
 		//initialize move counter
 		this.moveCount = 1;
 		
@@ -98,27 +102,35 @@ public class Chess {
 	}
 	
 	
-	public static void main(String[] args){	
-		System.out.println("lets chess!");
+	public static void helpMessage(){
 		System.out.println("*************************************************");
 		System.out.println("instructions:");
 		System.out.println("-------------------------------------------------");
-		System.out.println("input format: rf rf (r = rank, f = file)");
+		System.out.println("input format: 'rf rf' (r = rank, f = file)");
 		System.out.println("ex: Please Enter Move: 1a 2b");
 		System.out.println("-------------------------------------------------");
 		System.out.println("type 'draw' after input to offer a draw game");
 		System.out.println("ex: Please Enter Move: 1a 2b draw");
-		System.out.println("type 'draw' to accept offer");
+		System.out.println("type 'draw' in response to accept offer");
+		System.out.println("-------------------------------------------------");
+		System.out.println("type 'help' to display this message");
 		System.out.println("-------------------------------------------------");
 		System.out.println("type 'quit' to exit game");
 		System.out.println("*************************************************\n");
+	}
+	
+	public static void main(String[] args){	
+		System.out.println("lets chess!");
+		helpMessage();
 		
 		
 		//create a new game
 		Chess game = new Chess();
-		System.out.println(game.board);
+		
+		
 		
 		try{
+			
 			//input stream reader wrapped in buffered reader
 			InputStreamReader isr = new InputStreamReader(System.in);
 			BufferedReader br = new BufferedReader(isr);
@@ -127,16 +139,23 @@ public class Chess {
 			ArrayList<RankFile> rankFilePair = new ArrayList<RankFile>();
 			//boolean for checking valid move
 			boolean move;
+			//char for determining whose turn it is..
+			char turn;
 			
 			//while game is not over
 			while(game.gameOver == false){
+				//print the board
+				System.out.println(game.board);
+				
 				//if this is an odd-numbered move (white's turn)
 				if ( game.moveCount % 2 == 1 ) {
 					System.out.println(game.white.toString() + "'s turn!");
+					turn = 'w';
 					System.out.print("Please enter move: ");
 				//if this is an even-numbered move (black's turn)
 				} else {
 					System.out.println(game.black.toString() + "'s turn!");
+					turn = 'b';
 					System.out.print("Please enter move: ");
 				}
 				//read in input for this player's move 
@@ -146,17 +165,24 @@ public class Chess {
 				if (moveInput.equals("quit")){
 					game.gameOver = true;
 					System.out.println("game over!");
+				}else if (moveInput.equals("help")){
+					helpMessage();
 				//is the proper input length, with no draw offer
 				}else if (moveInput.length() == 5){
 				//parse input for correctness
 					rankFilePair = parseInput( moveInput );
-					if (rankFilePair == null) {
-						System.out.println("Incorrect input! try again..");
+					if (rankFilePair == null) {	//invalid rank/file
+						System.out.println("Incorrect input! try again..");	
 					}else{
-						move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
-						if (move) {
-							System.out.println(game.board);
-							game.moveCount++;
+						//input is correct. now determine if it's a valid move.
+						if (game.board.getPiece(rankFilePair.get(0)).color == turn){
+							move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
+							
+							if (move) {
+								game.moveCount++;
+							} else {
+								System.out.println("invalid move!");
+							}
 						} else {
 							System.out.println("invalid move!");
 						}

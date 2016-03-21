@@ -9,7 +9,6 @@ public class Knight extends Piece {
 	public Knight(char color, RankFile position, Board board) {
 		super(color, position, board);
 		this.type = 'N';
-
 	}
 
 	@Override
@@ -27,6 +26,7 @@ public class Knight extends Piece {
 			if (piece == null || piece.color != this.color){
 				ans.add(uul);
 			}
+			
 		}
 		
 		//up-up-right
@@ -92,7 +92,6 @@ public class Knight extends Piece {
 				ans.add(ddr);
 			}
 		}
-		System.out.println(ans);
 		return ans;
 	}
 }

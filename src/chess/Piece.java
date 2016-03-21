@@ -27,7 +27,7 @@ abstract class Piece {
 
 	// returns true if this piece is successfully moved to this location.
 	// returns false otherwise
-	boolean move(RankFile rf) {
+	boolean movePiece(RankFile rf) {
 		//error conditions for invalid rank file parameters
 		if (rf.rank < 1 || rf.rank > 8 || rf.file < 'a' || rf.file > 'h'){
 			return false;
@@ -46,9 +46,9 @@ abstract class Piece {
 	}
 	
 	//same method, different signaure
-	boolean move(int rank, char file) {
+	boolean movePiece(int rank, char file) {
 		RankFile rf = new RankFile(rank, file);
-		return this.move(rf);
+		return this.movePiece(rf);
 	}
 
 	//returns this piece's position (RankFile object)

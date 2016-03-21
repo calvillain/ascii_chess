@@ -7,5 +7,16 @@
 package chess;
 
 public class Player {
-
+	char color;
+	Board board;
+	boolean check;
+	boolean checkmate;
+	public Player(char color, Board board){
+		this.color = color;
+		this.board = board;
+		this.check = false;
+		this.checkmate = false;
+	}
+	
+	
 }

@@ -7,8 +7,8 @@ import chess.Chess.RankFile;
 public class King extends Piece {
 	boolean unmoved;
 
-	public King(char color, RankFile position, Board board) {
-		super(color, position, board);
+	public King(char color, RankFile position, Board board, Player player) {
+		super(color, position, board, player);
 		this.type = 'K';
 		this.unmoved = true;
 	}
@@ -21,11 +21,60 @@ public class King extends Piece {
 		char t = board.getPiece(square).color;
 		ArrayList<RankFile> ans = new ArrayList<RankFile>();
 
+		//checking for castle is a possible move
+		Piece rook;
+		if (unmoved) {	
+		//white castling
+		
+			if ( this.color == 'w') {
+				//with left rook
+				
+				rook = board.getPiece(1, 'a');
+				if (rook != null && rook.unmoved) {
+					if (board.getPiece(1, 'd')==null
+					&& board.getPiece(1, 'c')==null
+					&& board.getPiece(1,'b')==null){
+						ans.add(new RankFile(1, 'c'));
+					}
+				}
+				//with right rook
+				rook = board.getPiece(1, 'h');
+				if (rook != null && rook.unmoved){
+					if (board.getPiece(1, 'f')==null
+					&& board.getPiece(1, 'g') == null){
+						ans.add(new RankFile(1, 'g'));
+					}
+				}
+			
+			//black castling	
+			} else {
+			
+				//with left rook
+				rook = board.getPiece(8, 'a');
+				if (rook != null && rook.unmoved){
+					if (board.getPiece(8, 'd')==null
+					&& board.getPiece(8, 'c')==null
+					&& board.getPiece(8, 'b')==null){
+						ans.add(new RankFile(8, 'c'));
+					}	
+				}
+				
+				//with right rook
+				rook = board.getPiece(8, 'h');
+				if (rook != null && rook.unmoved){
+					if (board.getPiece(8, 'f')==null
+					&& board.getPiece(8, 'g')==null){
+						ans.add(new RankFile(8, 'g'));
+					}
+				}
+			}
+		}
+		
 		// castling-left-rook-incomplete
 		if(unmoved){
 			RankFile leftSquare = new RankFile(r , (char) (f-1));
 			RankFile leftLeftSquare= new RankFile(r, (char) (f-2));
-			RankFile leftRook= new RankFile(r, (char) (f-3)); // have to check if its unmoved, not implemented
+			RankFile leftRook= new RankFile(r, (char) (f-3)); 
 			if(board.getPiece(leftSquare) == null&&board.getPiece(leftLeftSquare)==null){
 	
 			}

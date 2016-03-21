@@ -6,8 +6,8 @@ import chess.Chess.RankFile;
 
 public class Knight extends Piece {
 
-	public Knight(char color, RankFile position, Board board) {
-		super(color, position, board);
+	public Knight(char color, RankFile position, Board board, Player player) {
+		super(color, position, board, player);
 		this.type = 'N';
 	}
 

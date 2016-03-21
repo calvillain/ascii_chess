@@ -12,8 +12,8 @@ import chess.Chess.RankFile;
  *	Board board;
  */
 class Queen extends Piece {
-	public Queen(char color, RankFile position, Board board) {
-		super(color, position, board);
+	public Queen(char color, RankFile position, Board board, Player player) {
+		super(color, position, board, player);
 		this.type = 'Q';
 	}
 

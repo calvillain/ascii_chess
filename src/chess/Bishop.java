@@ -6,8 +6,8 @@ import chess.Chess.RankFile;
 
 //Piece subclass for Rook.
 class Bishop extends Piece {
-	public Bishop(char color, RankFile position, Board board) {
-		super(color, position, board);
+	public Bishop(char color, RankFile position, Board board, Player player) {
+		super(color, position, board, player);
 		this.type = 'B';
 	}
 

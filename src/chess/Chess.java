@@ -66,6 +66,7 @@ public class Chess {
 	//second rankfile object is the location to move that piece
 	//returns null if incorrect input
 	public static ArrayList<RankFile> parseInput(String input){
+		System.out.println(input);
 		ArrayList<RankFile> ans = new ArrayList<RankFile>();
 		int r1;
 		char f1;
@@ -87,11 +88,15 @@ public class Chess {
 						if (Character.isLetter(input.charAt(4))){
 							f2 = (Character.toLowerCase(input.charAt(4)));
 							
-							ans.add(new RankFile(r1, f1));
-							ans.add(new RankFile(r2, f2));
-							
-							System.out.println(ans); 
-							return ans;
+							if (r1 >= 1 && r1 <= 8 && f1 >= 'a' && f1 <= 'h'){
+								ans.add(new RankFile(r1, f1));
+								
+								if (r2 >= 1 && r2 <= 8 && f2 >= 'a' && f2 <= 'h'){
+									ans.add(new RankFile(r2, f2));
+									//System.out.println(ans); 
+									return ans;
+								}
+							}
 						}
 					}
 				}
@@ -115,7 +120,7 @@ public class Chess {
 		System.out.println("-------------------------------------------------");
 		System.out.println("type 'help' to display this message");
 		System.out.println("-------------------------------------------------");
-		System.out.println("type 'quit' to exit game");
+		System.out.println("type 'resign' to exit game");
 		System.out.println("*************************************************\n");
 	}
 	
@@ -162,7 +167,7 @@ public class Chess {
 				String moveInput = br.readLine();
 				
 				//check if gameover
-				if (moveInput.equals("quit")){
+				if (moveInput.equals("resign")){
 					game.gameOver = true;
 					System.out.println("game over!");
 				}else if (moveInput.equals("help")){
@@ -171,15 +176,16 @@ public class Chess {
 				}else if (moveInput.length() == 5){
 				//parse input for correctness
 					rankFilePair = parseInput( moveInput );
-					if (rankFilePair == null) {	//invalid rank/file
+					if (rankFilePair == null || game.board.getPiece(rankFilePair.get(0)) == null) {	//invalid rank/file
 						System.out.println("Incorrect input! try again..");	
 					}else{
 						//input is correct. now determine if it's a valid move.
 						if (game.board.getPiece(rankFilePair.get(0)).color == turn){
 							move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
 							
+							//if move was successful
 							if (move) {
-								game.moveCount++;
+								game.moveCount++;//increment move counter
 							} else {
 								System.out.println("invalid move!");
 							}
@@ -188,7 +194,63 @@ public class Chess {
 						}
 					}
 					
-				//proper input string length for draw offer	
+				//proper input length for promoting pawn
+				}else if (moveInput.length() == 7){
+					rankFilePair = parseInput( moveInput.substring(0, 5));
+					
+					if (rankFilePair == null) {	//invalid rank/file
+						System.out.println("Incorrect input! try again..");
+					}else{
+						
+						
+						//check for valid promotion char
+						char p = moveInput.charAt(6);
+						System.out.println("promoting to: " + p);
+						
+						if (p == 'R' || p == 'N' || p == 'B' || p == 'Q'){
+						//input is correct. now determine if it's a valid move.
+						
+							//if the selected piece is the correct color for this turn
+							if (game.board.getPiece(rankFilePair.get(0)).color == turn){
+							
+								//check color
+								if (turn == 'w'											//if this is white player
+								&& game.board.getPiece(rankFilePair.get(0)).type == 'p'	//moving a pawn
+								&& rankFilePair.get(1).rank == '8'){					//to the end of the board
+									
+									
+									move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
+									if (move) {
+										game.moveCount++;//increment move counter
+										game.board.getPiece(rankFilePair.get(1)).type = p;
+	
+									} else {	//move was unsuccessful
+										System.out.println("invalid move!");
+									}
+								}else if (turn == 'b'											//if this is white player
+								&& game.board.getPiece(rankFilePair.get(0)).type == 'p'	//moving a pawn
+								&& rankFilePair.get(1).rank == '1'){					//to the end of the board
+									//implement black promotion
+									move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
+									if (move) {
+										game.moveCount++;//increment move counter
+										game.board.getPiece(rankFilePair.get(1)).type = p;
+									} else {	//move was unsuccessful
+										System.out.println("Invalid move!");
+									}
+	
+								//if i'ts not a valid promotion move
+								} else {
+									System.out.println("Invalid input!");
+								}
+							}
+						//if it's not a valid char for promotion
+						} else {
+							System.out.println("Invalid input!");
+						}
+						
+					}
+				//proper input string length for draw offer
 				}else if (moveInput.length() == 10 ){
 					//implement some way to offer draw, then accept it
 				

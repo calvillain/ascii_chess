@@ -12,12 +12,12 @@ import chess.Chess.RankFile;
  *	Board board;
  */
 class Pawn extends Piece {
-	boolean unmoved;
+	
 
-	public Pawn(char color, RankFile position, Board board) {
-		super(color, position, board);
+	public Pawn(char color, RankFile position, Board board, Player player) {
+		super(color, position, board, player);
 		this.type = 'p';
-		this.unmoved = true;
+
 	}
 	
 
@@ -37,11 +37,10 @@ class Pawn extends Piece {
 		RankFile oneAhead = new RankFile(r + forward, f);
 		RankFile twoAhead = new RankFile(r + (2 * forward), f);
 		if (board.getPiece(oneAhead) == null) {
+			ans.add(oneAhead);
 			if (board.getPiece(twoAhead) == null && this.unmoved) {
 				ans.add(twoAhead);
-			}
-
-			ans.add(oneAhead);
+			}	
 		}
 
 		RankFile rightDiag = new RankFile(r + forward, (char) (f + 1));
@@ -58,7 +57,6 @@ class Pawn extends Piece {
 				ans.add(leftDiag);
 			}
 		}
-
 		return ans;
 	}
 

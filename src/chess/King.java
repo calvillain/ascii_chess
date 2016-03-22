@@ -12,6 +12,38 @@ public class King extends Piece {
 		this.type = 'K';
 		this.unmoved = true;
 	}
+	
+	// returns true if this piece is successfully moved to this location.
+	// returns false otherwise
+	// added boolean in signature for castling
+	boolean movePiece(RankFile rf, boolean castle) {
+		if (castle){
+			boolean move = movePiece(rf);
+			//white left castle
+			if (move && rf.equals(new RankFile(1, 'c'))){
+				board.getPiece(1, 'a').movePiece(1, 'd');
+				return true;
+						
+			//white right castle
+			}else if (move && rf.equals(new RankFile(1, 'g'))){
+				board.getPiece(1, 'h').movePiece(1, 'f');
+				return true;
+			}
+			
+			//black left castle
+			if (move && rf.equals(new RankFile(8, 'c'))){
+				board.getPiece(8, 'a').movePiece(8, 'd');
+				return true;
+			}
+			//black right castle
+			if (move && rf.equals(new RankFile(8, 'g'))){
+				board.getPiece(8, 'h').movePiece(8, 'f');
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
 
 	@Override
 	ArrayList<RankFile> getValidMoves() {
@@ -70,17 +102,6 @@ public class King extends Piece {
 			}
 		}
 		
-		// castling-left-rook-incomplete
-		if(unmoved){
-			RankFile leftSquare = new RankFile(r , (char) (f-1));
-			RankFile leftLeftSquare= new RankFile(r, (char) (f-2));
-			RankFile leftRook= new RankFile(r, (char) (f-3)); 
-			if(board.getPiece(leftSquare) == null&&board.getPiece(leftLeftSquare)==null){
-	
-			}
-		}
-		// castling-right-rook-incomplete
-
 		// up
 		square = new RankFile(r + 1, (char) (f));
 		if (r + 1 > 0 && r + 1 < 9 && f >= 'a' && f <= 'h'

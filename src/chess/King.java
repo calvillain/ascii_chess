@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import chess.Chess.RankFile;
 
+/**
+ * Piece subclass for King object.
+ * @author Calvin Lee, Bartosz Kidacki
+ *
+ */
 public class King extends Piece {
 	boolean unmoved;
 

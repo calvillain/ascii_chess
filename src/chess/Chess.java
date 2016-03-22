@@ -10,6 +10,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * Chess class.
+ * @author Calvin Lee, Bartosz Kidacki
+ *
+ */
+
+
 public class Chess {
 	public Board board;	//the board object we'replaying on
 	Player white;	//the white player object in this chess game

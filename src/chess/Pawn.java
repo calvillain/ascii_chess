@@ -4,22 +4,62 @@ import java.util.ArrayList;
 
 import chess.Chess.RankFile;
 
-/*
- *	Piece subclass for Pawn. inherited fields:
- *	RankFile position;	//position object. tuple of rank, file
- *	char color;	//'w' = white, 'b' = black
- *	char type;	//'p' = pawn, 'K' = King, etc.
- *	Board board;
+/**
+ * Piece subclass for Pawn.
+ * @author Calvin Lee, Bartosz Kidacki
+ *
  */
 class Pawn extends Piece {
+	boolean unmoved;
+
+	public boolean isEnpassantPossible() {
+		return enpassantPossible;
+	}
+
+	public void setEnpassantPossible(boolean enpassantPossible) {
+		this.enpassantPossible = enpassantPossible;
+	}
+
+	boolean enpassantPossible;
 	
 
 	public Pawn(char color, RankFile position, Board board, Player player) {
 		super(color, position, board, player);
 		this.type = 'p';
-
+		this.unmoved = true;
 	}
 	
+
+	@Override
+	boolean movePiece(RankFile rf) {
+		RankFile oldRF = this.position;
+		boolean moved = super.movePiece(rf);
+
+		if (moved) {
+			unmoved = false;
+		
+		if (Math.abs(oldRF.rank - rf.rank) == 2) {
+			enpassantPossible = true;
+		}
+	    if(this.color== 'b') {
+    		RankFile pawnAbove = new RankFile(rf.rank + 1, rf.file);
+			Piece d = board.getPiece(pawnAbove);
+
+			if (d instanceof Pawn && ((Pawn) d).isEnpassantPossible()) {
+				board.removePiece(pawnAbove);
+			}
+    }
+    else {
+    		RankFile pawnBelow = new RankFile(rf.rank - 1, rf.file);
+			Piece d = board.getPiece(pawnBelow);
+			if (d instanceof Pawn && ((Pawn) d).isEnpassantPossible()) {
+				board.removePiece(pawnBelow);
+			}
+	
+		}
+		}
+		return moved;
+	}
 
 	// gets a list of valid moves for this specific piece.
 	public ArrayList<RankFile> getValidMoves() {
@@ -56,6 +96,20 @@ class Pawn extends Piece {
 			if (p.color != this.color) {
 				ans.add(leftDiag);
 			}
+		}
+		RankFile enpassantRight = new RankFile(r + forward, (char) (f + 1));
+		RankFile pawnRight = new RankFile(r, (char) (f + 1));
+		p = board.getPiece(enpassantRight);
+		Piece d = board.getPiece(pawnRight);
+		if (p == null && d instanceof Pawn && ((Pawn) d).isEnpassantPossible()) {
+			ans.add(enpassantRight);
+		}
+		RankFile enpassantLeft = new RankFile(r + forward, (char) (f - 1));
+		RankFile pawnLeft = new RankFile(r, (char) (f - 1));
+		p = board.getPiece(enpassantLeft);
+		d = board.getPiece(pawnLeft);
+		if (p == null && d instanceof Pawn && ((Pawn) d).isEnpassantPossible()) {
+			ans.add(enpassantLeft);
 		}
 		return ans;
 	}

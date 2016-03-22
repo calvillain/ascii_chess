@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import chess.Chess.RankFile;
 
+/**
+ * Piece subclass for Knight object.
+ * @author Calvin Lee, Bartosz Kidacki
+ *
+ */
 public class Knight extends Piece {
 
 	public Knight(char color, RankFile position, Board board, Player player) {

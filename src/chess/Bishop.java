@@ -4,7 +4,12 @@ import java.util.ArrayList;
 
 import chess.Chess.RankFile;
 
-//Piece subclass for Rook.
+
+/**
+ * Piece subclass for Bishop object.
+ * @author Calvin Lee, Bartosz Kidacki
+ *
+ */
 class Bishop extends Piece {
 	public Bishop(char color, RankFile position, Board board, Player player) {
 		super(color, position, board, player);

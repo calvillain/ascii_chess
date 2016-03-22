@@ -10,6 +10,11 @@ import java.util.ArrayList;
 
 import chess.Chess.RankFile;
 
+/**
+ * Player object.
+ * @author Calvin Lee, Bartosz Kidacki
+ *
+ */
 public class Player {
 	char color;
 	Board board;

@@ -9,6 +9,11 @@ package chess;
 import java.util.ArrayList;
 import chess.Chess.RankFile;
 
+/**
+ * abstract class for Piece object.
+ * @author Calvin Lee, Bartosz Kidacki
+ *
+ */
 abstract class Piece {
 	RankFile position; // position object. tuple of rank, file
 	char color; // 'w' = white, 'b' = black

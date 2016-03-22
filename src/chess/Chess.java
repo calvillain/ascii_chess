@@ -147,8 +147,7 @@ public class Chess {
 			boolean move;
 			//char for determining whose turn it is..
 			char turn;
-			//for castling rooks
-			boolean castle = false;
+	
 			//for promoting pawns
 			boolean promote = false;
 			
@@ -190,52 +189,18 @@ public class Chess {
 						//**********************************************************************************
 						//in this block, check for special cases!
 						
+						Piece movedPiece = game.board.getPiece(rankFilePair.get(1));
+						
 						//castles
 						String sub = moveInput.substring(0,5);
 						if (sub.equals("e1 c1") || sub.equals("e1 g1") 
 						|| sub.equals("e8 c8") || sub.equals("e8 g8")){
 							King king = (King) game.board.getPiece(rankFilePair.get(0));
 							move = king.movePiece(rankFilePair.get(1), true);
-						}
-						
-						//unpromoted pawns
-						Piece movedPiece = game.board.getPiece(rankFilePair.get(1));
-						if (movedPiece.type == 'p' && movedPiece.position.rank == 8){
-							
-							
-						}
-						
-						int i = 0;
-						while (game.white.pieces.get(i) != null){
-							//look for pieces that are checking opponent's king
-							
-							//incomplete
-
-						}
-							
-						
-							
-						//unpromoted black pawns
-						movedPiece = game.board.getPiece(rankFilePair.get(1));
-						if (movedPiece.type == 'p' && movedPiece.position.rank == 1){
-							
-							
-						}
-						
-						int j = 0;
-						while (game.black.pieces.get(j) != null){
-							//look for pieces that are checking opponent's king
-
-							//incomplete
-
 						
 						}
-						//**********************************************************************************
 						
-						
-						
-						
-						
+		
 						if (game.board.getPiece(rankFilePair.get(0)).color == turn){
 							move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
 							
@@ -314,8 +279,55 @@ public class Chess {
 				}else{
 					System.out.println("Incorrect input! try again..");
 				}
+				/*
+				//unpromoted white pawns
+			}else if (turn == 'w'&& movedPiece.type == 'p' && movedPiece.position.rank == 8){
 				
+			//unpromoted black pawns
+			}else if (turn == 'b' && movedPiece.type == 'p' && movedPiece.position.rank == 1){
+			
+
+			*/
+				//**********************************************************************************
+				//in this block, check for checks and checkmate!
+				/*
+				int i = 0;
+				int j = 0;
+				ArrayList<RankFile> nextMoves;
+				Piece isKing;
+				while (game.white.pieces.get(i) != null){
+					//look for pieces that are checking opponent's king
+					nextMoves = game.white.pieces.get(i).getValidMoves();
+					while (nextMoves.get(i) != null){
+						isKing = game.board.getPiece(nextMoves.get(i)); 
+						
+						if (isKing != null && isKing.color == 'b' && isKing.type == 'K'){
+							game.black.check = true;
+						}
+						j++;	//next move
+					}
+					i++;	//next piece
+				}
+					
+				i = 0;
+				j = 0;
 				
+				while (game.black.pieces.get(j) != null){
+					//look for pieces that are checking opponent's king
+					nextMoves = game.white.pieces.get(i).getValidMoves();
+					while (nextMoves.get(i) != null){
+						isKing = game.board.getPiece(nextMoves.get(i)); 
+						if (isKing != null && isKing.color == 'w' && isKing.type == 'K'){
+							game.white.check = true;
+						}
+						j++;	//next move
+					}
+					i++;	//next piece
+				}
+				
+				*/
+				//**********************************************************************************
+
 			}
 			
 		} catch (Exception e) {

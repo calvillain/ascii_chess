@@ -286,43 +286,7 @@ public class Chess {
 
 			*/
 				//**********************************************************************************
-				//in this block, check for checks and checkmate!
-				/*
-				int i = 0;
-				int j = 0;
-				ArrayList<RankFile> nextMoves;
-				Piece isKing;
-				while (game.white.pieces.get(i) != null){
-					//look for pieces that are checking opponent's king
-					nextMoves = game.white.pieces.get(i).getValidMoves();
-					while (nextMoves.get(i) != null){
-						isKing = game.board.getPiece(nextMoves.get(i)); 
-						
-						if (isKing != null && isKing.color == 'b' && isKing.type == 'K'){
-							game.black.check = true;
-						}
-						j++;	//next move
-					}
-					i++;	//next piece
-				}
-					
-				i = 0;
-				j = 0;
 				
-				while (game.black.pieces.get(j) != null){
-					//look for pieces that are checking opponent's king
-					nextMoves = game.white.pieces.get(i).getValidMoves();
-					while (nextMoves.get(i) != null){
-						isKing = game.board.getPiece(nextMoves.get(i)); 
-						if (isKing != null && isKing.color == 'w' && isKing.type == 'K'){
-							game.white.check = true;
-						}
-						j++;	//next move
-					}
-					i++;	//next piece
-				}
-				
-				*/
 				//**********************************************************************************
 
 			}

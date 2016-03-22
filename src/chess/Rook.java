@@ -65,7 +65,7 @@ class Rook extends Piece {
 				break;
 			}
 		}
-
+		//System.out.println(ans);
 		return ans;
 	}
 }

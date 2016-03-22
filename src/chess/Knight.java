@@ -92,6 +92,7 @@ public class Knight extends Piece {
 				ans.add(ddr);
 			}
 		}
+		//System.out.println(ans);
 		return ans;
 	}
 }

@@ -49,21 +49,101 @@ abstract class Piece {
 				//System.out.println("removed! opponent's remaining pieces:");
 				//System.out.println(this.player.opponent.pieces);
 			}
-			
+			Piece takenPiece = null; 
+			if (board.getPiece(rf) != null){
+				takenPiece = board.getPiece(rf);
+			}
 			board.setPiece(this, rf); // update the board by adding to new
 			// position
 			board.removePiece(oldrf); // and deleting from old position
 			this.unmoved = false;
+			
+			
+			int i = 0;
+			int j = 0;
+			
+			ArrayList<RankFile> nextMoves;
+			Piece isKing;
+			//System.out.println(player.opponent.pieces);
+			while (i < player.opponent.pieces.size()){
+				//System.out.println("checking opponent's pieces..");
+				//System.out.println(player.opponent.pieces.get(i));
+				//look for opponent's pieces that are checking your king
+				nextMoves = player.opponent.pieces.get(i).getValidMoves();
+				while (j < nextMoves.size()){
+					
+					isKing = board.getPiece(nextMoves.get(j)); 
+					
+					if (isKing != null && isKing.color == this.color && isKing.type == 'K'){
+						//this means this move will result in your king being placed in check.
+						//revert! this move is not allowed!
+						
+						board.setPiece(this, oldrf);
+						board.removePiece(rf);
+						if (takenPiece != null){
+							board.setPiece(takenPiece, oldrf);
+						}
+						return false;
+					}
+					j++;	//next move
+				}
+				i++;	//next piece
+			}
+			
+			i = 0;
+			j = 0;
+			
+			while (i < player.pieces.size()){
+				//look for pieces that are checking opponent's king
+				nextMoves = player.pieces.get(i).getValidMoves();
+				while (j < nextMoves.size()){
+					isKing = board.getPiece(nextMoves.get(j)); 
+					
+					if (isKing != null && isKing.color != this.color && isKing.type == 'K'){
+						//this means this move has put your opponent's king in check
+						player.opponent.check = true;
+					}
+					j++;	//next move
+				}
+				i++;	//next piece
+			}			
 			return true;
 		}
 		return false;
 	}
+	
+	
 	
 	//same method, different signaure
 	boolean movePiece(int rank, char file) {
 		RankFile rf = new RankFile(rank, file);
 		return this.movePiece(rf);
 	}
+	
+	
+	//in this block, check for checks and checkmate!
+	/*
+	
+		
+	i = 0;
+	j = 0;
+	
+	while (game.black.pieces.get(j) != null){
+		//look for pieces that are checking opponent's king
+		nextMoves = game.white.pieces.get(i).getValidMoves();
+		while (nextMoves.get(i) != null){
+			isKing = game.board.getPiece(nextMoves.get(i)); 
+			if (isKing != null && isKing.color == 'w' && isKing.type == 'K'){
+				game.white.check = true;
+			}
+			j++;	//next move
+		}
+		i++;	//next piece
+	}
+	
+	*/
+	
+	
 
 	//returns this piece's position (RankFile object)
 	public RankFile getPos() {

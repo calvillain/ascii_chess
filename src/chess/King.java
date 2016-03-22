@@ -20,24 +20,56 @@ public class King extends Piece {
 		if (castle){
 			boolean move = movePiece(rf);
 			//white left castle
-			if (move && rf.equals(new RankFile(1, 'b'))){
-				board.getPiece(1, 'a').movePiece(1, 'c');
+			if (move && rf.equals(new RankFile(1, 'a'))){
+				RankFile oldrf = new RankFile(1, 'a');
+				Piece rook = board.getPiece(1, 'a');
+				RankFile newrf = new RankFile(1, 'd');
+				rook.position = rf; // change this piece's position field
+				board.setPiece(rook, newrf); // update the board by adding to new
+				board.removePiece(oldrf); // and deleting from old position
+				this.unmoved = false;
+				rook.unmoved = false;
+				
 				return true;
 
 			//white right castle
 			}else if (move && rf.equals(new RankFile(1, 'g'))){
-				board.getPiece(1, 'h').movePiece(1, 'f');
+				//board.getPiece(1, 'h').movePiece(1, 'f');
+				RankFile oldrf = new RankFile(1, 'h');
+				Piece rook = board.getPiece(1, 'h');
+				RankFile newrf = new RankFile(1, 'f');
+				rook.position = rf; // change this piece's position field
+				board.setPiece(rook, newrf); // update the board by adding to new
+				board.removePiece(oldrf); // and deleting from old position
+				this.unmoved = false;
+				rook.unmoved = false;
 				return true;
 			}
 
 			//black left castle
 			if (move && rf.equals(new RankFile(8, 'b'))){
-				board.getPiece(8, 'a').movePiece(8, 'c');
+				//board.getPiece(8, 'a').movePiece(8, 'd');
+				RankFile oldrf = new RankFile(8, 'a');
+				Piece rook = board.getPiece(8, 'a');
+				RankFile newrf = new RankFile(8, 'd');
+				rook.position = rf; // change this piece's position field
+				board.setPiece(rook, newrf); // update the board by adding to new
+				board.removePiece(oldrf); // and deleting from old position
+				this.unmoved = false;
+				rook.unmoved = false;
 				return true;
 			}
 			//black right castle
 			if (move && rf.equals(new RankFile(8, 'g'))){
-				board.getPiece(8, 'h').movePiece(8, 'f');
+				//board.getPiece(8, 'h').movePiece(8, 'f');
+				RankFile oldrf = new RankFile(8, 'h');
+				Piece rook = board.getPiece(8, 'h');
+				RankFile newrf = new RankFile(8, 'f');
+				rook.position = rf; // change this piece's position field
+				board.setPiece(rook, newrf); // update the board by adding to new
+				board.removePiece(oldrf); // and deleting from old position
+				this.unmoved = false;
+				rook.unmoved = false;
 				return true;
 			}
 			return false;

@@ -198,10 +198,7 @@ public class Chess {
 							King king = (King) game.board.getPiece(rankFilePair.get(0));
 							move = king.movePiece(rankFilePair.get(1), true);
 						
-						}
-						
-		
-						if (game.board.getPiece(rankFilePair.get(0)).color == turn){
+						}else if (game.board.getPiece(rankFilePair.get(0)).color == turn){
 							move = game.board.getPiece(rankFilePair.get(0)).movePiece(rankFilePair.get(1));
 							
 							//if move was successful

@@ -290,12 +290,81 @@ public class Chess {
 			//unpromoted black pawns
 			}else if (turn == 'b' && movedPiece.type == 'p' && movedPiece.position.rank == 1){
 			
-			check for check and checkmate
+			
 			*/
-				//**********************************************************************************
 				
-				//**********************************************************************************
-
+				//check for check and checkmate
+				if (game.white.check || game.black.check){
+					Player checkedPlayer;
+					if (game.white.check){
+						System.out.println("white is checked!");
+						checkedPlayer = game.white;
+					}else{
+						System.out.println("black is checked!");
+						checkedPlayer = game.black;
+					}
+					
+					//find out if it's checkmate
+					ArrayList<Piece> checkPieces = checkedPlayer.pieces;
+					ArrayList<RankFile> possibleMoves;
+					RankFile newMove;
+					
+					RankFile oldRF;
+					RankFile newRF;
+					Piece oldPiece = null;
+					
+					boolean checkMove;
+					boolean isCheckmate = true; 
+					
+					int i=0;
+					int j=0;
+					
+					System.out.println("checkpieces: "+ checkPieces);
+					while (i<checkPieces.size()){
+						possibleMoves = checkPieces.get(i).getValidMoves();
+						System.out.println("possible moves: "+possibleMoves);
+						
+						while (j < possibleMoves.size()){
+							newMove = possibleMoves.get(j);
+							
+							
+							oldRF = checkPieces.get(i).position;
+							
+							System.out.print("old: "+oldRF);
+							newRF = possibleMoves.get(j);
+							System.out.println(" new: "+newRF);
+							oldPiece = game.board.getPiece(newRF);
+							
+							
+							checkMove = checkPieces.get(i).movePiece(newMove); 
+							
+							if ( checkMove == true ){//if there exists a move that will uncheck
+								//revert changes
+								System.out.println("this move works!");
+								game.board.setPiece(checkPieces.get(i), oldRF);
+								game.board.removePiece(newRF);
+								if (oldPiece != null){
+									game.board.setPiece(oldPiece, newRF);
+								}
+								checkedPlayer.check = true;
+								isCheckmate = false;
+							}
+							
+							
+							j++;
+						}
+						i++;
+						j = 0;
+					}
+					
+					if (isCheckmate == true){
+						checkedPlayer.checkmate = true;
+						System.out.println("checkmate!");
+						game.gameOver = true;
+						System.out.println(game.board);
+						System.out.println(checkedPlayer.opponent.toString() + " wins!");
+					}
+				}
 			}
 			
 		} catch (Exception e) {

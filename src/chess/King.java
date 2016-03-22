@@ -87,7 +87,8 @@ public class King extends Piece {
 		int r = this.position.rank;
 		char f = this.position.file;
 		RankFile square = new RankFile(r, (char) (f));
-		char t = board.getPiece(square).color;
+
+			
 		ArrayList<RankFile> ans = new ArrayList<RankFile>();
 
 		//checking for castle is a possible move
@@ -142,49 +143,49 @@ public class King extends Piece {
 		// up
 		square = new RankFile(r + 1, (char) (f));
 		if (r + 1 > 0 && r + 1 < 9 && f >= 'a' && f <= 'h'
-				&& (board.getPiece(square) == null || board.getPiece(square).color != t)) {
+				&& (board.getPiece(square) == null || board.getPiece(square).color != this.color)) {
 			ans.add(new RankFile(r + 1, (char) (f)));
 		}
 		// up-left
 		square = new RankFile(r + 1, (char) (f - 1));
 		if (r + 1 > 0 && r + 1 < 9 && (char) (f - 1) >= 'a' && (char) (f - 1) <= 'h'
-				&& (board.getPiece(square) == null || board.getPiece(square).color != t)) {
+				&& (board.getPiece(square) == null || board.getPiece(square).color != this.color)) {
 			ans.add(new RankFile(r + 1, (char) (f - 1)));
 		}
 		// up-right
 		square = new RankFile(r + 1, (char) (f + 1));
 		if (r + 1 > 0 && r + 1 < 9 && (char) (f + 1) >= 'a' && (char) (f + 1) <= 'h'
-				&& (board.getPiece(square) == null || board.getPiece(square).color != t)) {
+				&& (board.getPiece(square) == null || board.getPiece(square).color != this.color)) {
 			ans.add(new RankFile(r + 1, (char) (f + 1)));
 		}
 		// left
 		square = new RankFile(r, (char) (f - 1));
 		if (r > 0 && r < 9 && (char) (f - 1)>= 'a' && (char) (f - 1) <= 'h'
-				&& (board.getPiece(square) == null || board.getPiece(square).color != t)) {
+				&& (board.getPiece(square) == null || board.getPiece(square).color != this.color)) {
 			ans.add(new RankFile(r, (char) (f - 1)));
 		}
 		// right
 		square = new RankFile(r, (char) (f + 1));
 		if (r > 0 && r < 9 && (char) (f + 1)>= 'a' && (char) (f + 1) <= 'h'
-				&& (board.getPiece(square) == null || board.getPiece(square).color != t)) {
+				&& (board.getPiece(square) == null || board.getPiece(square).color != this.color)) {
 			ans.add(new RankFile(r, (char) (f + 1)));
 		}
 		// down
 		square = new RankFile(r - 1, (char) (f));
 		if (r - 1 > 0 && r - 1 < 9 && f >= 'a' && f <= 'h'
-				&& (board.getPiece(square) == null || board.getPiece(square).color != t)) {
+				&& (board.getPiece(square) == null || board.getPiece(square).color != this.color)) {
 			ans.add(new RankFile(r - 1, (char) (f)));
 		}
 		// down-right
 		square = new RankFile(r - 1, (char) (f + 1));
 		if (r - 1 > 0 && r - 1 < 9 && (char) (f + 1) >= 'a' && (char) (f + 1) <= 'h'
-				&& (board.getPiece(square) == null || board.getPiece(square).color != t)) {
+				&& (board.getPiece(square) == null || board.getPiece(square).color != this.color)) {
 			ans.add(new RankFile(r - 1, (char) (f + 1)));
 		}
 		// down-left
 		square = new RankFile(r - 1, (char) (f - 1));
 		if (r - 1 > 0 && r - 1 < 9 && (char) (f - 1)>= 'a' && (char) (f - 1) <= 'h'
-				&& (board.getPiece(square) == null || board.getPiece(square).color != t)) {
+				&& (board.getPiece(square) == null || board.getPiece(square).color != this.color)) {
 			ans.add(new RankFile(r - 1, (char) (f - 1)));
 		}
 

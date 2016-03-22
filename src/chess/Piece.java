@@ -42,8 +42,8 @@ abstract class Piece {
 		if (rf.rank < 1 || rf.rank > 8 || rf.file < 'a' || rf.file > 'h'){
 			return false;
 		}
-		if (this.getValidMoves().contains(rf)) { // if this is one of the valid
-			// moves
+		
+		if (this.getValidMoves().contains(rf)) { // if this is one of the valid moves
 			RankFile oldrf = this.position;
 			this.position = rf; // change this piece's position field
 			
@@ -64,6 +64,9 @@ abstract class Piece {
 			this.unmoved = false;
 			
 			
+			boolean wasChecked = player.check;
+			boolean willCheck = false;
+			
 			int i = 0;
 			int j = 0;
 			
@@ -82,18 +85,16 @@ abstract class Piece {
 					if (isKing != null && isKing.color == this.color && isKing.type == 'K'){
 						//this means this move will result in your king being placed in check.
 						//revert! this move is not allowed!
+						willCheck = true;
 						
-						board.setPiece(this, oldrf);
-						board.removePiece(rf);
-						if (takenPiece != null){
-							board.setPiece(takenPiece, oldrf);
-						}
-						return false;
 					}
 					j++;	//next move
 				}
 				i++;	//next piece
+				j = 0;
 			}
+
+			
 			
 			i = 0;
 			j = 0;
@@ -111,9 +112,36 @@ abstract class Piece {
 					j++;	//next move
 				}
 				i++;	//next piece
-			}			
-			return true;
-		}
+				j = 0;
+			}
+			
+			//if you were not checked, and this move will not make you checked
+			if ( (!wasChecked) && (!willCheck) ) {
+				return true;	//it's allowed.
+			//if you were not checked, and this move will make you checked
+			}else if ( (!wasChecked) && (willCheck) ) {
+				//it's not allowed. must revert, and return false!
+				board.setPiece(this, oldrf);
+				board.removePiece(rf);
+				if (takenPiece != null){
+					board.setPiece(takenPiece, rf);
+				}
+				return false;
+			//if you were checked, and this move will not make you checked 
+			}else if ( (wasChecked) && (!willCheck) ) {
+				//this move is allowed!
+				player.check = false;
+				return true;
+			//if you were checked, and this move will still make you checked
+			}else if ( (wasChecked) && (willCheck) ) {
+				//it's not allowed. must revert, and return false!
+				board.setPiece(this, oldrf);
+				board.removePiece(rf);
+				if (takenPiece != null){
+					board.setPiece(takenPiece, rf);
+				}
+			}
+		}//if this is not one of the valid moves
 		return false;
 	}
 	
@@ -124,31 +152,7 @@ abstract class Piece {
 		RankFile rf = new RankFile(rank, file);
 		return this.movePiece(rf);
 	}
-	
-	
-	//in this block, check for checks and checkmate!
-	/*
-	
-		
-	i = 0;
-	j = 0;
-	
-	while (game.black.pieces.get(j) != null){
-		//look for pieces that are checking opponent's king
-		nextMoves = game.white.pieces.get(i).getValidMoves();
-		while (nextMoves.get(i) != null){
-			isKing = game.board.getPiece(nextMoves.get(i)); 
-			if (isKing != null && isKing.color == 'w' && isKing.type == 'K'){
-				game.white.check = true;
-			}
-			j++;	//next move
-		}
-		i++;	//next piece
-	}
-	
-	*/
-	
-	
+
 
 	//returns this piece's position (RankFile object)
 	public RankFile getPos() {

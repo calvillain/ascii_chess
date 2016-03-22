@@ -290,7 +290,7 @@ public class Chess {
 			//unpromoted black pawns
 			}else if (turn == 'b' && movedPiece.type == 'p' && movedPiece.position.rank == 1){
 			
-
+			check for check and checkmate
 			*/
 				//**********************************************************************************
 				
